@@ -144,22 +144,6 @@ curl -X PATCH http://localhost:5000/api/releases/1 \
   -d '{"additionalInfo":"Waiting on QA sign-off"}'
 ```
 
-## Database schema
-
-A single table; the completed steps are stored as a `text[]` of step ids. The
-status is not stored — it is computed from the steps on every read.
-
-```sql
-CREATE TABLE releases (
-  id              SERIAL PRIMARY KEY,
-  name            TEXT        NOT NULL,
-  release_date    TIMESTAMPTZ NOT NULL,
-  additional_info TEXT        NOT NULL DEFAULT '',
-  completed_steps TEXT[]      NOT NULL DEFAULT '{}',
-  created_at      TIMESTAMPTZ NOT NULL DEFAULT now()
-);
-```
-
 ## Deployment
 
 The repo includes a `render.yaml` blueprint that provisions the database, the
