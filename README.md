@@ -173,18 +173,14 @@ Any host works though — the only requirements are a hosted PostgreSQL database
 (set `DATABASE_URL`) for the API, and a static host for the built `client/dist`
 folder.
 
-## What's included
+## Features
 
-**Must-haves**
-
-- View all releases, create a release, check/uncheck steps, edit the note
-- Single repository, single-page app
-- Frontend and backend talk over a REST API
-- State stored in PostgreSQL
-
-**Nice-to-haves**
-
+- View a list of all releases with their name, date and computed status
+- Create a new release with a name, date and an optional note
+- Open a release to check / uncheck its checklist steps; the status updates
+  automatically as steps are completed
+- Edit a release's additional remarks and save them
 - Delete a release
-- Responsive layout
-- Dockerfile + docker-compose for the backend
-- Automated tests for the status logic
+- Responsive layout that works on small screens
+- Run the backend with Docker (`Dockerfile` + `docker-compose.yaml`)
+- Automated tests for the status-computation logic
