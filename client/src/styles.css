@@ -1,0 +1,287 @@
+:root {
+  --purple: #5b51e8;
+  --purple-dark: #4a40d4;
+  --bg: #eef1f5;
+  --border: #e2e5ea;
+  --text: #1f2430;
+  --muted: #8a909b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+}
+
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px 20px 80px;
+}
+
+.brand {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.brand p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(20, 24, 40, 0.04);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-head h2 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* Buttons */
+.btn {
+  border: none;
+  border-radius: 7px;
+  padding: 9px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: var(--purple);
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: var(--purple-dark);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Releases table */
+.releases {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.releases th {
+  text-align: left;
+  font-weight: 700;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.releases td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.releases tr:last-child td {
+  border-bottom: none;
+}
+
+.action {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--text);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.action:hover {
+  text-decoration: underline;
+}
+
+.action.danger {
+  color: #c23b3b;
+}
+
+/* Status pills */
+.status {
+  font-weight: 600;
+}
+.status-planned {
+  color: var(--muted);
+}
+.status-ongoing {
+  color: #b8860b;
+}
+.status-done {
+  color: #2e8b57;
+}
+
+/* Forms */
+.breadcrumb {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.breadcrumb a {
+  color: var(--purple);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb .current {
+  color: var(--muted);
+}
+
+.release-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.field-row {
+  display: flex;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.field > span {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.field input,
+.field textarea {
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 9px 11px;
+  font: inherit;
+  font-size: 14px;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--purple);
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.value-box {
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 9px 11px;
+  font-size: 14px;
+  background: #fafbfc;
+}
+
+.read-only {
+  margin: 20px 0;
+}
+
+/* Checklist */
+.checklist {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checklist label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.checklist input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--purple);
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.saved-note {
+  color: #2e8b57;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* States */
+.muted {
+  color: var(--muted);
+}
+
+.error {
+  color: #c23b3b;
+  font-size: 14px;
+}
+
+/* Responsive: stack the two-column rows and let the table scroll */
+@media (max-width: 560px) {
+  .field-row {
+    flex-direction: column;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .releases {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,40 @@
+# Render blueprint: provisions a Postgres database, the API web service, and
+# the static frontend in one deploy. See README for the manual steps too.
+databases:
+  - name: releasecheck-db
+    databaseName: releasecheck
+    plan: free
+
+services:
+  # --- API ---
+  - type: web
+    name: releasecheck-api
+    runtime: node
+    rootDir: server
+    plan: free
+    buildCommand: npm install
+    # Apply the schema on every deploy (CREATE TABLE IF NOT EXISTS is safe), then start.
+    startCommand: npm run migrate && npm start
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: releasecheck-db
+          property: connectionString
+      - key: PGSSL
+        value: enable
+
+  # --- Frontend (static) ---
+  - type: web
+    name: releasecheck-web
+    runtime: static
+    rootDir: client
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    # Set this to the API URL after the first deploy (Render shows it in the dashboard).
+    envVars:
+      - key: VITE_API_URL
+        sync: false
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
