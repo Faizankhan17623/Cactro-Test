@@ -146,6 +146,31 @@ body {
   color: #2e8b57;
 }
 
+/* Status row on the release detail page */
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0 4px;
+}
+
+.status-row .status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+.status-row .status-planned {
+  background: #f0f1f4;
+}
+.status-row .status-ongoing {
+  background: #fdf3e0;
+}
+.status-row .status-done {
+  background: #e4f4ec;
+}
+
 /* Forms */
 .breadcrumb {
   font-size: 14px;

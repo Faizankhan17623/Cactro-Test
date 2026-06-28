@@ -6,7 +6,7 @@ import {
   updateRelease,
   deleteRelease,
 } from '../api.js';
-import { formatDate } from '../format.js';
+import { formatDate, statusLabel } from '../format.js';
 
 export default function ReleaseDetail() {
   const { id } = useParams();
@@ -81,6 +81,13 @@ export default function ReleaseDetail() {
   if (error && !release) return <p className="error">{error}</p>;
   if (!release) return <p className="muted">Release not found.</p>;
 
+  // Derive the status from the live checkbox state so the badge updates the
+  // moment a step is toggled, without waiting for a refresh.
+  const doneCount = completed.length;
+  const total = steps.length;
+  const liveStatus =
+    doneCount === 0 ? 'planned' : doneCount === total ? 'done' : 'ongoing';
+
   return (
     <>
       <div className="card-head">
@@ -91,6 +98,15 @@ export default function ReleaseDetail() {
         <button className="btn primary" onClick={handleDelete}>
           Delete <span aria-hidden="true">🗑</span>
         </button>
+      </div>
+
+      <div className="status-row">
+        <span className={`status status-${liveStatus}`}>
+          {statusLabel(liveStatus)}
+        </span>
+        <span className="muted">
+          {doneCount} of {total} steps completed
+        </span>
       </div>
 
       <div className="field-row read-only">
