@@ -56,7 +56,6 @@ export default function ReleaseDetail() {
 
   async function saveInfo() {
     setSavingInfo(true);
-    setInfoSaved(false);
     try {
       await updateRelease(id, { additionalInfo: info });
       // Saved successfully — go back to the list so the user sees the updated

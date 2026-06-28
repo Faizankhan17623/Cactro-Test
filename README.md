@@ -45,7 +45,7 @@ docker compose up --build
 ```
 
 This starts Postgres, applies the schema and runs the API on
-`http://localhost:4000`.
+`http://localhost:5000`.
 
 Then start the frontend:
 
@@ -70,7 +70,7 @@ backend, so no extra config is needed.
    npm install
    cp .env.example .env        # then edit DATABASE_URL
    npm run migrate             # creates the table
-   npm run dev                 # API on http://localhost:4000
+   npm run dev                 # API on http://localhost:5000
    ```
 
    For a local Postgres without SSL, keep `PGSSL=disable` in `.env`.
@@ -126,7 +126,7 @@ A release returned by the API looks like:
 Create a release:
 
 ```bash
-curl -X POST http://localhost:4000/api/releases \
+curl -X POST http://localhost:5000/api/releases \
   -H 'Content-Type: application/json' \
   -d '{"name":"Version 1.0.1","date":"2022-09-20T00:00:00.000Z","additionalInfo":""}'
 ```
@@ -134,7 +134,7 @@ curl -X POST http://localhost:4000/api/releases \
 Toggle the completed steps:
 
 ```bash
-curl -X PATCH http://localhost:4000/api/releases/1 \
+curl -X PATCH http://localhost:5000/api/releases/1 \
   -H 'Content-Type: application/json' \
   -d '{"completedSteps":["prs_merged","tests_passing"]}'
 ```
@@ -142,7 +142,7 @@ curl -X PATCH http://localhost:4000/api/releases/1 \
 Update only the note:
 
 ```bash
-curl -X PATCH http://localhost:4000/api/releases/1 \
+curl -X PATCH http://localhost:5000/api/releases/1 \
   -H 'Content-Type: application/json' \
   -d '{"additionalInfo":"Waiting on QA sign-off"}'
 ```

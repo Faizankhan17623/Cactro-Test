@@ -1,6 +1,6 @@
 # Spins up Postgres + the API together for local development.
 #   docker compose up --build
-# The API ends up on http://localhost:4000, Postgres on localhost:5432.
+# The API ends up on http://localhost:5000, Postgres on localhost:5432.
 #
 # These credentials are for the local throwaway dev database only. Override them
 # by exporting POSTGRES_USER / POSTGRES_PASSWORD before running compose if you like.
@@ -29,9 +29,9 @@ services:
     environment:
       DATABASE_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/releasecheck
       PGSSL: disable
-      PORT: 4000
+      PORT: 5000
     ports:
-      - '4000:4000'
+      - '5000:5000'
     # Apply the schema, then start the server.
     command: sh -c "npm run migrate && npm start"
 

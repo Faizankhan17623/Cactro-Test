@@ -23,7 +23,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong' });
 });
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`ReleaseCheck API listening on port ${port}`);
 });
