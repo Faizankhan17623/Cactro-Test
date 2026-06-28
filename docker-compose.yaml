@@ -1,12 +1,15 @@
 # Spins up Postgres + the API together for local development.
 #   docker compose up --build
 # The API ends up on http://localhost:4000, Postgres on localhost:5432.
+#
+# These credentials are for the local throwaway dev database only. Override them
+# by exporting POSTGRES_USER / POSTGRES_PASSWORD before running compose if you like.
 services:
   db:
     image: postgres:16-alpine
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       POSTGRES_DB: releasecheck
     ports:
       - '5432:5432'
@@ -24,7 +27,7 @@ services:
       db:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgres://postgres:postgres@db:5432/releasecheck
+      DATABASE_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/releasecheck
       PGSSL: disable
       PORT: 4000
     ports:
