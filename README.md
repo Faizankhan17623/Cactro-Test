@@ -29,10 +29,7 @@ server/   Express API + Postgres access
 
 ## Live demo
 
-- App: `<your-frontend-url>`
-- API: `<your-api-url>`
-
-> Replace the placeholders above with the URLs you get after deploying.
+**https://cactro-test-lake.vercel.app/**
 
 ## Running locally
 
