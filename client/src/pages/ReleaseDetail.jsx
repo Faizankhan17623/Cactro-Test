@@ -19,7 +19,6 @@ export default function ReleaseDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [savingInfo, setSavingInfo] = useState(false);
-  const [infoSaved, setInfoSaved] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -59,12 +58,12 @@ export default function ReleaseDetail() {
     setSavingInfo(true);
     setInfoSaved(false);
     try {
-      const updated = await updateRelease(id, { additionalInfo: info });
-      setRelease(updated);
-      setInfoSaved(true);
+      await updateRelease(id, { additionalInfo: info });
+      // Saved successfully — go back to the list so the user sees the updated
+      // release (and its status) instead of staying on a page that looks unchanged.
+      navigate('/');
     } catch (err) {
       setError(err.message);
-    } finally {
       setSavingInfo(false);
     }
   }
@@ -127,17 +126,13 @@ export default function ReleaseDetail() {
           rows={5}
           value={info}
           placeholder="Please enter any other important notes for the release"
-          onChange={(e) => {
-            setInfo(e.target.value);
-            setInfoSaved(false);
-          }}
+          onChange={(e) => setInfo(e.target.value)}
         />
       </label>
 
       {error && <p className="error">{error}</p>}
 
       <div className="form-actions">
-        {infoSaved && <span className="saved-note">Saved ✓</span>}
         <button className="btn primary" onClick={saveInfo} disabled={savingInfo}>
           {savingInfo ? 'Saving…' : 'Save ✓'}
         </button>
